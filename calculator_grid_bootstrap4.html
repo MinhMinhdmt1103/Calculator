@@ -4,12 +4,25 @@
     <title></title>
 </head>
 <body>
+<!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <meta name="viewport" con
+    tent="width=device-width, initial-scale=1">
 
 <style>
-    .calculator{
+    .container{
+        width:474px;
         background-color: #ffe6e6;
-        width: 480px;
         height:630px;
         border:1px;
         margin-left: auto;
@@ -19,37 +32,25 @@
     }
     #result{
         height: 87px;
-        width: 400px;
         background: #fff;
         border: 1px solid #000;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 10px;
-        padding-top: 5px;
         border-radius: 7px;
-        font-size: 30px
+        font-size: 30px;
+        margin-top:15px;
     }
+
     .numcal{
         padding-top: 15px;
-        width: 402px;
-        height: 630px;
-        padding-left:38px;
         margin: 3px;
     }
-    .num{
-        width: 450px;
-    }
-    .btn, .func, .dot{
+    .btn, .func{
         width: 95px;
         height: 95px;
         border-radius: 50%;
         border: 1px;
+        font-size: 30px;
         padding:3px;
         margin:3px;
-        float:left;
-        font-size: 30px;
-    }
-    .btn, .dot{
         background-color: #b3e6ff;
     }
     .func{
@@ -61,8 +62,7 @@
         height:95px;
         border-radius: 50%;
         border: 1px;
-        margin-top: 3px;
-        margin-bottom: 3px;
+        margin: 3px;
         padding: 3px;
         font-size: 30px;
         background-color:  #809fff;
@@ -72,40 +72,49 @@
         height:95px;
         border-radius: 47%;
         border:1px;
-        float: right;
-        margin-right: 15px;
         background-color: #4747d1;
         font-size: 30px;
     }
+    .row{
+        padding: 3px;
+    }
 </style>
+<div class="container">
+    <div id="result" class="col-sm-12"></div>
+    <div class="row">
+        <div class="col-sm-9">
+            <button class="btn" type="button" data-val="1">1</button>
+            <button class="btn" type="button" data-val="2">2</button>
+            <button class="btn" type="button" data-val="3">3</button>
+            <button class="btn" type="button" data-val="4">4</button>
+            <button class="btn" type="button" data-val="5">5</button>
+            <button class="btn" type="button" data-val="6">6</button>
+            <button class="btn" type="button" data-val="7">7</button>
+            <button class="btn" type="button" data-val="8">8</button>
+            <button class="btn" type="button" data-val="9">9</button>
+            <button class="btn" type="button" data-val="0">0</button>
+            <button class="btn" type="button" data-val="00">00</button>
+            <button class="btn" type="button" data-val = ".">.</button>
+        </div>
 
-<div class="calculator">
-<div id="result"></div>
-<div class="numcal">
-<div class="function">
-    <button class="btn" type="button" data-val="1">1</button>
-    <button class="btn" type="button" data-val="2">2</button>
-    <button class="btn" type="button" data-val="3">3</button>
-    <button class="btn" type="button" data-val="4">4</button>
-    <button class="btn" type="button" data-val="5">5</button>
-    <button class="btn" type="button" data-val="6">6</button>
-    <button class="btn" type="button" data-val="7">7</button>
-    <button class="btn" type="button" data-val="8">8</button>
-    <button class="btn" type="button" data-val="9">9</button>
-    <button class="btn" type="button" data-val="0">0</button>
-    <button class="btn" type="button" data-val="00">00</button>
-    <button class="dot" type="button" data-val = ".">.</button>
+        <div class="col-sm-3">
+            <button class="btn-math" type="button" data-val="+">+</button>
+            <button class="btn-math" type="button" data-val="-">-</button>
+            <button class="btn-math" type="button" data-val="*">*</button>
+            <button class="btn-math" type="button" data-val="/">/</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <button type="reset" class="func" id="reset" data-val= "reset">AC</button> 
+        </div>
+        <div class="col-sm-6">   
+            <button class="btn-result" type="button" data-val="=">=</button>        
+        </div>
+      </div>
 </div>
 
-    <button class="btn-math" type="button" data-val="+">+</button>
-    <button class="btn-math" type="button" data-val="-">-</button>
-    <button class="btn-math" type="button" data-val="*">*</button>
-    <button class="btn-math" type="button" data-val="/">/</button>
-
-    <button type="reset" class="func" id="reset" data-val= "reset">AC</button> 
-    <button class="btn-result" type="button" data-val="=">=</button>  
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
     var so = '';
     var dot = '.';
@@ -169,13 +178,6 @@
         doiso = 0;
         flag = true;
     }
-
-    $('.dot').click(function(){
-        var temp = $(this).data('val');
-        setSo(temp);
-        console.log(temp);
-        flag = true;
-    });
 
     $('.btn').click(function(){
         if(flag == true)
